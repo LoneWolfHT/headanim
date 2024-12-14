@@ -1,5 +1,6 @@
 local get_connected_players = minetest.get_connected_players
 local lastdir = {}
+local basepos = vector.new(0, 6.35, 0)
 
 minetest.register_globalstep(function()
 	for _, player in pairs(get_connected_players()) do
@@ -9,9 +10,13 @@ minetest.register_globalstep(function()
 		if (lastdir[pname] or 0) ~= ldeg then
 			lastdir[pname] = ldeg
 			player:set_bone_override("Head", {
+				position = {
+					vec = basepos,
+					absolute = true
+				},
 				rotation = {
 					vec = {x = ldeg, y = 0, z = 0},
-					interpolation = 0.14,
+					interpolation = 0.09,
 				}
 			})
 		end
