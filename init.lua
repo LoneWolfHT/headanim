@@ -10,6 +10,8 @@ minetest.register_globalstep(function()
 		if (lastdir[pname] or 0) ~= ldeg then
 			lastdir[pname] = ldeg
 			player:set_bone_override("Head", {
+				-- The position attr makes headanim work on older clients
+				-- https://github.com/LoneWolfHT/headanim/pull/4
 				position = {
 					vec = basepos,
 					absolute = true
